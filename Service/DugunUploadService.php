@@ -5,7 +5,7 @@ use Dugun\UploadBundle\Service\Upload\AWSUploadService;
 use Dugun\UploadBundle\Service\Upload\DugunImageMicroserviceUploadService;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 
-class UploadService
+class DugunUploadService
 {
 
     /**
