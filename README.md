@@ -4,7 +4,19 @@ Installation
 1: Download the Bundle
 -------------------------
 
-For now we dont support composer install :)
+Bundle is not on packagist yet, so you need to add repository your composer.json
+
+    "repositories": [
+            {
+                "type": "vcs",
+                "url": "https://github.com/duguncom/DugunUploadBundle"
+            }
+    ]
+    
+Now you can add duguncom/uploadbundle to your requirements with dev-master
+
+    "duguncom/uploadbundle": "dev-master",
+       
 
 2: Enable Bundle
 -------------------------
@@ -52,3 +64,19 @@ Add our needed configuration parameters to your `app/config/config.yml`
                     secret: %dugun_upload.credentials.aws.credentials.secret%
             dugun_image_microservice: #this is our top secret image upload service!
                 url: %dugun_upload.credentials.dugun_image_microservice.url%
+                
+4: Usage
+-------------------------
+
+You can use upload_service on your controllers by getting from container or you can pass service to your other services.
+    
+    Service naming: dugun_upload.service.dugun_upload
+
+####Uploading File
+    
+    $file = 'It can be path of a file';
+    $file = 'OR It can be UploadedFile instance';
+    $destinationPath = '/uploaded/folder/filename.jpg';
+    $result = $this->uploadService->upload($file, $destinationPath);
+    //If file uploaded successfully, $result['success'] returns as (boolean)true
+    
