@@ -15,7 +15,7 @@ class UploadTest extends WebTestCase
         $service = $container->get('dugun_upload.service.upload_service');
 
         $image = new UploadedFile(
-            'src/Dugun/UploadBundle/Resources/assets/test/file1.jpg',
+            __DIR__ . '/../Resources/assets/test/file1.jpg',
             'file1.jpg',
             'image/jpeg'
         );
