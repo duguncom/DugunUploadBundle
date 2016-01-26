@@ -1,0 +1,30 @@
+{
+  "name": "duguncom/uploadbundle",
+  "description": "A upload bundle for duguncom",
+  "type": "symfony-bundle",
+  "authors": [
+    {
+      "name": "salah aldin alsasa",
+      "email": "salahalsasa@gmail.com"
+    },
+    {
+      "name": "guven atbakan",
+      "email": "guven@atbakan.com"
+    }
+  ],
+  "keywords": [
+    "upload bundle"
+  ],
+  "licensse": [
+    "MIT"
+  ],
+  "require": {
+    "aws/aws-sdk-php-symfony": "~1.1"
+  },
+  "autoload": {
+    "psr-0": {
+      "Dugun\\UploadBundle": ""
+    }
+  },
+  "target-dir": "Dugun/UploadBundle"
+}
