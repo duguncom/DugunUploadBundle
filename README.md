@@ -52,7 +52,7 @@ Add our needed configuration parameters to your `app/config/config.yml`
 
     dugun_upload:
         upload_service_name: %dugun_upload.upload_service_name% # choose your side
-        temporary_path: %dugun_upload.temporary_path% # choose your side
+        temporary_path: %dugun_upload.temporary_path% # give a folder path that web-server has access to write (maybe /tmp is good)
         credentials:
             aws:
                 bucket: %dugun_upload.credentials.aws.bucket%
