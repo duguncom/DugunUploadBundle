@@ -4,18 +4,13 @@ Installation
 1: Download the Bundle
 -------------------------
 
-Bundle is not on packagist yet, so you need to add repository your composer.json
+You can add duguncom/uploadbundle to your requirements with dev-master
 
-    "repositories": [
-            {
-                "type": "vcs",
-                "url": "https://github.com/duguncom/DugunUploadBundle"
-            }
-    ]
+    "duguncom/uploadbundle": "~1.0",
     
-Now you can add duguncom/uploadbundle to your requirements with dev-master
+or you can directly run:
 
-    "duguncom/uploadbundle": "dev-master",
+    composer required duguncom/uploadbundle
        
 
 2: Enable Bundle
