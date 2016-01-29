@@ -58,10 +58,14 @@ class DugunUploadService
         }
         if (isset($filePath)) {
             $result =  $this->uploaderService->upload($filePath, $destinationFile);
-            if($result['success'] == true && $delete)
+            if ($result['success'] == true)
             {
-                unlink($filePath);
+                if ($delete) {
+                    unlink($filePath);
+                }
+                $result['url'] = $this->uploaderService->getFileFullUrl($destinationFile);
             }
+
             return $result;
         }
     }

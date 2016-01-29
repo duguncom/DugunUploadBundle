@@ -70,4 +70,9 @@ class AWSUploadService implements DugunUploadInterface
 
         return $destinationFile;
     }
+
+    public function getFileFullUrl($filePath)
+    {
+        return sprintf('%s%s', $this->parameters['base_url'], $filePath);
+    }
 }

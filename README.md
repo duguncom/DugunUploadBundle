@@ -55,6 +55,7 @@ Add our needed configuration parameters to your `app/config/config.yml`
         temporary_path: %dugun_upload.temporary_path% # give a folder path that web-server has access to write (maybe /tmp is good)
         credentials:
             aws:
+                base_url: %dugun_upload.credentials.aws.base_url%
                 bucket: %dugun_upload.credentials.aws.bucket%
                 version: latest
                 region: %dugun_upload.credentials.aws.region%
@@ -63,6 +64,7 @@ Add our needed configuration parameters to your `app/config/config.yml`
                     key: %dugun_upload.credentials.aws.credentials.key%
                     secret: %dugun_upload.credentials.aws.credentials.secret%
             dugun_image_microservice: #this is our top secret image upload service!
+                base_url: %dugun_upload.credentials.dugun_image_microservice.base_url%
                 url: %dugun_upload.credentials.dugun_image_microservice.url%
                 
 4: Usage
@@ -79,4 +81,5 @@ You can use upload_service on your controllers by getting from container or you 
     $destinationPath = '/uploaded/folder/filename.jpg';
     $result = $this->uploadService->upload($file, $destinationPath);
     //If file uploaded successfully, $result['success'] returns as (boolean)true
+    //And if its true, it returns $result['file_url'] that you can access your file
     

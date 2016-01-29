@@ -83,4 +83,10 @@ class DugunImageMicroserviceUploadService implements DugunUploadInterface
     {
         // TODO: Implement download() method.
     }
+
+
+    public function getFileFullUrl($filePath)
+    {
+        return sprintf('%s%s', $this->parameters['base_url'], $filePath);
+    }
 }
