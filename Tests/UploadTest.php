@@ -3,6 +3,8 @@
 namespace Dugun\UploadBundle\Tests;
 
 use Dugun\UploadBundle\Service\DugunUploadService;
+use Intervention\Image\Image;
+use Intervention\Image\ImageManager;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 
@@ -31,6 +33,11 @@ class UploadTest extends \PHPUnit_Framework_TestCase
     public function test_upload_object()
     {
         $this->assertInstanceOf('\Dugun\UploadBundle\Service\DugunUploadService', $this->service);
+
+        $interventionImageManager = new ImageManager();
+        $image = $interventionImageManager->make(__DIR__ . '/../Resources/assets/test/file1.jpg');
+        $this->service->upload($image, 'test.jpg');
+
         $image = new UploadedFile(
             __DIR__ . '/../Resources/assets/test/file1.jpg',
             'file1.jpg',

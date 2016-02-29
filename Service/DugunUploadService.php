@@ -53,13 +53,14 @@ class DugunUploadService
         }
         if ($file instanceof UploadedFile) {
             $filePath = $file->getRealPath();
+        } elseif ($file instanceof \Intervention\Image\Image) {
+            $filePath = $file->dirname . '/' . $file->basename;
         } elseif (is_string($file)) {
             $filePath = $file;
         }
         if (isset($filePath)) {
-            $result =  $this->uploaderService->upload($filePath, $destinationFile);
-            if ($result['success'] == true)
-            {
+            $result = $this->uploaderService->upload($filePath, $destinationFile);
+            if ($result['success'] == true) {
                 if ($delete) {
                     unlink($filePath);
                 }

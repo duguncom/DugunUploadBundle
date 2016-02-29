@@ -73,6 +73,7 @@ You can use upload_service on your controllers by getting from container or you 
     
     $file = 'It can be path of a file';
     $file = 'OR It can be UploadedFile instance';
+    $file = 'OR It can be \Intervention\Image\Image instance';
     $destinationPath = '/uploaded/folder/filename.jpg';
     $result = $this->uploadService->upload($file, $destinationPath);
     //If file uploaded successfully, $result['success'] returns as (boolean)true
