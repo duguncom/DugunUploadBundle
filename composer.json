@@ -20,7 +20,7 @@
   ],
   "require": {
     "symfony/http-kernel": "~2.7",
-    "guzzlehttp/guzzle": "~6.0",
+    "guzzlehttp/guzzle": "~6.1",
     "aws/aws-sdk-php-symfony": "~1.1"
   },
   "require-dev": {
