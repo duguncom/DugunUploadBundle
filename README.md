@@ -6,7 +6,7 @@ Installation
 
 You can add duguncom/uploadbundle to your requirements with dev-master
 
-    "duguncom/uploadbundle": "~1.0",
+    "duguncom/uploadbundle": "~1.1",
     
 or you can directly run:
 
