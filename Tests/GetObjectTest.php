@@ -7,17 +7,15 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
 
 class GetObjectTest extends \PHPUnit_Framework_TestCase
 {
-
     /**
      * @var ContainerInterface
      */
     private $container;
 
     /**
-     * @var DugunUploadService $service
+     * @var DugunUploadService
      */
     private $service;
-
 
     public function setUp()
     {
