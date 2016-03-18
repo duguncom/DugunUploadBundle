@@ -18,12 +18,14 @@ class AWSUploadService implements DugunUploadInterface
         $this->uploadService = new S3Client($parameters);
     }
 
-    public function upload($filePath, $destinationFile)
+    public function upload($filePath, $destinationFile, $overwrite = false)
     {
         $bucket = $this->parameters['bucket'];
-        $response = $this->doesObjectExist($destinationFile);
-        if ($response === true) {
-            throw new \InvalidArgumentException('File already exist');
+        if ($overwrite === false) {
+            $response = $this->doesObjectExist($destinationFile);
+            if ($response === true) {
+                throw new \InvalidArgumentException('File already exist');
+            }
         }
         $result = $this->uploadService->putObject([
             'Bucket' => $bucket,

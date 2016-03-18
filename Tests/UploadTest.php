@@ -36,7 +36,7 @@ class UploadTest extends \PHPUnit_Framework_TestCase
 
         $interventionImageManager = new ImageManager();
         $image = $interventionImageManager->make(__DIR__ . '/../Resources/assets/test/file1.jpg');
-        $this->service->upload($image, 'test.jpg');
+        $this->service->upload($image, 'test.jpg', $delete = false, $overwrite = true);
 
         $image = new UploadedFile(
             __DIR__ . '/../Resources/assets/test/file1.jpg',
@@ -44,7 +44,7 @@ class UploadTest extends \PHPUnit_Framework_TestCase
             'image/jpeg'
         );
 
-        $result = $this->service->upload($image, 'test.jpg');
+        $result = $this->service->upload($image, 'test.jpg', $delete = false, $overwrite = true);
 
     }
 }

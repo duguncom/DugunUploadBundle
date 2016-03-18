@@ -20,7 +20,7 @@ class DugunImageMicroserviceUploadService implements DugunUploadInterface
         $this->client = new Client();
     }
 
-    public function upload($filePath, $destinationFile)
+    public function upload($filePath, $destinationFile, $overwrite = false)
     {
         $file = new UploadedFile(
             $filePath,

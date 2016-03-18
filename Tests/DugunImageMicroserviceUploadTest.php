@@ -26,6 +26,7 @@ class DugunImageMicroserviceUploadTest extends \PHPUnit_Framework_TestCase
         $this->container = $kernel->getContainer();
         $this->service = $this->container->get('dugun_upload.service.upload_service');
     }
+
     public function test_upload_object()
     {
         $this->assertInstanceOf('\Dugun\UploadBundle\Service\DugunUploadService', $this->service);
@@ -38,7 +39,7 @@ class DugunImageMicroserviceUploadTest extends \PHPUnit_Framework_TestCase
             'image/jpeg'
         );
 
-        $response = $this->service->upload($image, 't2/test77.jpg');
+        $response = $this->service->upload($image, 't2/test77.jpg', $delete = false, $overwrite = true);
         $this->assertTrue(is_array($response));
         $this->assertArrayHasKey('success', $response);
         $this->assertTrue($response['success']);

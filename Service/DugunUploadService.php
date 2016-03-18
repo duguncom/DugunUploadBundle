@@ -1,6 +1,7 @@
 <?php
 namespace Dugun\UploadBundle\Service;
 
+use Dugun\UploadBundle\Contracts\DugunUploadInterface;
 use Dugun\UploadBundle\Service\Upload\AWSUploadService;
 use Dugun\UploadBundle\Service\Upload\DugunImageMicroserviceUploadService;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
@@ -14,7 +15,7 @@ class DugunUploadService
     private $parameters;
 
     /**
-     * @var $uploaderService
+     * @var DugunUploadInterface $uploaderService
      */
     private $uploaderService;
 
@@ -46,7 +47,7 @@ class DugunUploadService
         return $this->uploaderService->download($filePath, $tmp_dir);
     }
 
-    public function upload($file, $destinationFile, $delete = false)
+    public function upload($file, $destinationFile, $delete = false, $overwrite = false)
     {
         if (!$this->uploaderService) {
             return false; //throw
@@ -59,7 +60,7 @@ class DugunUploadService
             $filePath = $file;
         }
         if (isset($filePath)) {
-            $result = $this->uploaderService->upload($filePath, $destinationFile);
+            $result = $this->uploaderService->upload($filePath, $destinationFile, $overwrite);
             if ($result['success'] == true) {
                 if ($delete) {
                     unlink($filePath);
