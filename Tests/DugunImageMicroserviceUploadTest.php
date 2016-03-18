@@ -8,14 +8,13 @@ use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 class DugunImageMicroserviceUploadTest extends \PHPUnit_Framework_TestCase
 {
-
     /**
      * @var ContainerInterface
      */
     private $container;
 
     /**
-     * @var DugunUploadService $service
+     * @var DugunUploadService
      */
     private $service;
 
@@ -34,7 +33,7 @@ class DugunImageMicroserviceUploadTest extends \PHPUnit_Framework_TestCase
         $this->service->setUploaderService('dugun_image_microservice');
 
         $image = new UploadedFile(
-            __DIR__ . '/../Resources/assets/test/file1.jpg',
+            __DIR__.'/../Resources/assets/test/file1.jpg',
             'file1.jpg',
             'image/jpeg'
         );

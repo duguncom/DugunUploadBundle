@@ -1,14 +1,12 @@
 <?php
-namespace Dugun\UploadBundle\Service\Upload;
 
+namespace Dugun\UploadBundle\Service\Upload;
 
 use Aws\S3\S3Client;
 use Dugun\UploadBundle\Contracts\DugunUploadInterface;
-use Imagine\Image\Point;
 
 class AWSUploadService implements DugunUploadInterface
 {
-
     protected $uploadService;
     protected $parameters;
 
@@ -29,10 +27,11 @@ class AWSUploadService implements DugunUploadInterface
         }
         $result = $this->uploadService->putObject([
             'Bucket' => $bucket,
-            'Key'    => $destinationFile,
-            'SourceFile'   => $filePath,
-            'ACL'    => 'public-read',
+            'Key' => $destinationFile,
+            'SourceFile' => $filePath,
+            'ACL' => 'public-read',
         ]);
+
         return ['success' => true];
     }
 
@@ -40,21 +39,22 @@ class AWSUploadService implements DugunUploadInterface
     {
         $bucket = $this->parameters['bucket'];
         $result = $this->uploadService->doesObjectExist($bucket, $destinationFile);
+
         return $result;
     }
 
     public function deleteObject($destinationFile)
     {
-        if($this->doesObjectExist($destinationFile)) {
+        if ($this->doesObjectExist($destinationFile)) {
             $bucket = $this->parameters['bucket'];
             $result = $this->uploadService->deleteObject($bucket, $destinationFile);
         }
     }
 
-
     /**
      * @param $filePath
      * @param $destinationFile
+     *
      * @return string
      */
     public function download($filePath, $destinationFile)
@@ -66,8 +66,8 @@ class AWSUploadService implements DugunUploadInterface
         }
         $result = $this->uploadService->getObject(array(
             'Bucket' => $bucket,
-            'Key'    => $filePath,
-            'SaveAs' => $destinationFile
+            'Key' => $filePath,
+            'SaveAs' => $destinationFile,
         ));
 
         return $destinationFile;

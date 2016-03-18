@@ -1,16 +1,13 @@
 <?php
+
 namespace Dugun\UploadBundle\Service\Upload;
 
-
-use Aws\S3\S3Client;
 use Dugun\UploadBundle\Contracts\DugunUploadInterface;
 use GuzzleHttp\Client;
-use Imagine\Image\Point;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 class DugunImageMicroserviceUploadService implements DugunUploadInterface
 {
-
     protected $uploadService;
     protected $parameters;
 
@@ -33,46 +30,47 @@ class DugunImageMicroserviceUploadService implements DugunUploadInterface
             'multipart' => [
                 [
                     'name' => 'file',
-                    'contents' => fopen($file, 'r')
+                    'contents' => fopen($file, 'r'),
                 ],
                 [
                     'name' => 'directory_name',
-                    'contents' => (string)$fileDirectory
+                    'contents' => (string) $fileDirectory,
                 ],
                 [
                     'name' => 'filename',
-                    'contents' => (string)$fileName
+                    'contents' => (string) $fileName,
                 ],
                 [
                     'name' => 'watermark',
-                    'contents' => (string)false
+                    'contents' => (string) false,
                 ],
                 [
                     'name' => 'type',
-                    'contents' => ''
-                ]
-            ]
+                    'contents' => '',
+                ],
+            ],
         ]);
 
-        $result = (array)(json_decode($response->getBody()->getContents()));
+        $result = (array) (json_decode($response->getBody()->getContents()));
         if (isset($result['status']) && $result['status'] === 'success') {
             return [
-                'success' => true
+                'success' => true,
             ];
         }
+
         return [
-            'success' => false
+            'success' => false,
         ];
     }
 
     /**
-     * This function not exist on microservice
+     * This function not exist on microservice.
+     *
      * @param $destinationFile
-     * @return null
      */
     public function doesObjectExist($destinationFile)
     {
-        return null;
+        return;
     }
 
     /**
@@ -83,7 +81,6 @@ class DugunImageMicroserviceUploadService implements DugunUploadInterface
     {
         // TODO: Implement download() method.
     }
-
 
     public function getFileFullUrl($filePath)
     {

@@ -1,4 +1,5 @@
 <?php
+
 namespace Dugun\UploadBundle\Service;
 
 use Dugun\UploadBundle\Contracts\DugunUploadInterface;
@@ -8,14 +9,13 @@ use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 class DugunUploadService
 {
-
     /**
-     * @var array $parameters
+     * @var array
      */
     private $parameters;
 
     /**
-     * @var DugunUploadInterface $uploaderService
+     * @var DugunUploadInterface
      */
     private $uploaderService;
 
@@ -31,7 +31,7 @@ class DugunUploadService
             $this->uploaderService = new AWSUploadService(
                 $this->parameters['credentials'][$serviceName]
             );
-        } else if ($serviceName == 'dugun_image_microservice') {
+        } elseif ($serviceName == 'dugun_image_microservice') {
             $this->uploaderService = new DugunImageMicroserviceUploadService(
                 $this->parameters['credentials'][$serviceName]
             );
@@ -43,7 +43,8 @@ class DugunUploadService
         if (!$this->uploaderService) {
             return false; //throw
         }
-        $tmp_dir = $this->parameters['temporary_path'] . time() . '_' . basename($filePath);
+        $tmp_dir = $this->parameters['temporary_path'].time().'_'.basename($filePath);
+
         return $this->uploaderService->download($filePath, $tmp_dir);
     }
 
@@ -55,7 +56,7 @@ class DugunUploadService
         if ($file instanceof UploadedFile) {
             $filePath = $file->getRealPath();
         } elseif ($file instanceof \Intervention\Image\Image) {
-            $filePath = $file->dirname . '/' . $file->basename;
+            $filePath = $file->dirname.'/'.$file->basename;
         } elseif (is_string($file)) {
             $filePath = $file;
         }
@@ -77,11 +78,13 @@ class DugunUploadService
         if (!$this->uploaderService) {
             return false; //throw
         }
+
         return $this->uploaderService->doesObjectExist($destinationFile);
     }
 
     /**
      * @param null|string $type
+     *
      * @return array
      */
     public function getValidMimeTypes($type = null)
@@ -89,7 +92,7 @@ class DugunUploadService
         if ($type === 'image') {
             return [
                 'image/jpeg',
-                'image/png'
+                'image/png',
             ];
         } else {
             return [
@@ -98,19 +101,18 @@ class DugunUploadService
                 'application/excel',
                 'text/plain',
                 'application/pdf',
-                'application/msword'
+                'application/msword',
             ];
         }
-
     }
 
     /**
      * @param $filename
+     *
      * @return bool
      */
     protected function isFilenameValid($filename)
     {
         return strpos(pathinfo($filename, PATHINFO_DIRNAME), '..') === false;
     }
-
 }

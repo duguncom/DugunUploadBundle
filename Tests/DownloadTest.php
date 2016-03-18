@@ -4,21 +4,18 @@ namespace Dugun\UploadBundle\Tests;
 
 use Dugun\UploadBundle\Service\DugunUploadService;
 use Symfony\Component\DependencyInjection\ContainerInterface;
-use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 class DownloadTest extends \PHPUnit_Framework_TestCase
 {
-
     /**
      * @var ContainerInterface
      */
     private $container;
 
     /**
-     * @var DugunUploadService $service
+     * @var DugunUploadService
      */
     private $service;
-
 
     public function setUp()
     {
