@@ -2,6 +2,7 @@
   "name": "duguncom/uploadbundle",
   "description": "A upload bundle for duguncom",
   "type": "symfony-bundle",
+  "license": "MIT",
   "authors": [
     {
       "name": "salah aldin alsasa",

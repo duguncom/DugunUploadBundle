@@ -79,7 +79,7 @@ class DugunImageMicroserviceUploadService implements DugunUploadInterface
      */
     public function download($filePath, $destinationFile)
     {
-        // TODO: Implement download() method.
+        return;
     }
 
     public function getFileFullUrl($filePath)
