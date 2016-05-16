@@ -25,12 +25,19 @@ class AWSUploadService implements DugunUploadInterface
                 throw new \InvalidArgumentException('File already exist');
             }
         }
-        $result = $this->uploadService->putObject([
+        $contetType = mime_content_type($filePath);
+        $objectArray = [
             'Bucket' => $bucket,
             'Key' => $destinationFile,
             'SourceFile' => $filePath,
-            'ACL' => 'public-read',
-        ]);
+            'ACL' => 'public-read'
+        ];
+        //TODO: check content type is allowed?
+        if ($contetType) {
+            $objectArray['ContentType'] = $contetType;
+        }
+
+        $result = $this->uploadService->putObject($objectArray);
 
         return ['success' => true];
     }
