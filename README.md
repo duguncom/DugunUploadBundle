@@ -10,8 +10,8 @@ You can add duguncom/uploadbundle to your requirements with dev-master
     
 or you can directly run:
 
-    composer required duguncom/uploadbundle
-       
+    composer require duguncom/uploadbundle
+
 
 2: Enable Bundle
 -------------------------
@@ -44,24 +44,24 @@ class AppKernel extends Kernel
 -------------------------
 
 Add our needed configuration parameters to your `app/config/config.yml`
-
-    dugun_upload:
-        upload_service_name: %dugun_upload.upload_service_name% # choose your side
-        temporary_path: %dugun_upload.temporary_path% # give a folder path that web-server has access to write (maybe /tmp is good)
-        credentials:
-            aws:
-                base_url: %dugun_upload.credentials.aws.base_url%
-                bucket: %dugun_upload.credentials.aws.bucket%
-                version: latest
-                region: %dugun_upload.credentials.aws.region%
-                scheme: http
-                credentials:
-                    key: %dugun_upload.credentials.aws.credentials.key%
-                    secret: %dugun_upload.credentials.aws.credentials.secret%
-            dugun_image_microservice: #this is our top secret image upload service!
-                base_url: %dugun_upload.credentials.dugun_image_microservice.base_url%
-                url: %dugun_upload.credentials.dugun_image_microservice.url%
-                
+```yml
+dugun_upload:
+    upload_service_name: %dugun_upload.upload_service_name% # choose your side
+    temporary_path: %dugun_upload.temporary_path% # give a folder path that web-server has access to write (maybe /tmp is good)
+    credentials:
+        aws:
+            base_url: %dugun_upload.credentials.aws.base_url%
+            bucket: %dugun_upload.credentials.aws.bucket%
+            version: latest
+            region: %dugun_upload.credentials.aws.region%
+            scheme: http
+            credentials:
+                key: %dugun_upload.credentials.aws.credentials.key%
+                secret: %dugun_upload.credentials.aws.credentials.secret%
+        dugun_image_microservice: #this is our top secret image upload service!
+            base_url: %dugun_upload.credentials.dugun_image_microservice.base_url%
+            url: %dugun_upload.credentials.dugun_image_microservice.url%
+```
 4: Usage
 -------------------------
 
