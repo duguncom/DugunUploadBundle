@@ -8,7 +8,7 @@ use Intervention\Image\ImageManager;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 
-class UploadTest extends \PHPUnit_Framework_TestCase
+class DugunUploadBundleTest extends \PHPUnit_Framework_TestCase
 {
     /**
      * @var ContainerInterface
@@ -28,7 +28,7 @@ class UploadTest extends \PHPUnit_Framework_TestCase
         $this->service = $this->container->get('dugun_upload.service.upload_service');
     }
 
-    public function test_upload_object()
+    public function testUploadObject()
     {
         $this->assertInstanceOf('\Dugun\UploadBundle\Service\DugunUploadService', $this->service);
 
@@ -43,5 +43,21 @@ class UploadTest extends \PHPUnit_Framework_TestCase
         );
 
         $result = $this->service->upload($image, 'test.jpg', $delete = false, $overwrite = true);
+    }
+
+    public function testCheckUploadedObjectExist()
+    {
+        $this->assertInstanceOf('\Dugun\UploadBundle\Service\DugunUploadService', $this->service);
+
+        $result = $this->service->doesObjectExist(
+            'test.jpg'
+        );
+        $this->assertTrue($result);
+    }
+
+    public function testDownloadUploadedObject()
+    {
+        $this->assertInstanceOf('\Dugun\UploadBundle\Service\DugunUploadService', $this->service);
+        $file = $this->service->download('test.jpg');
     }
 }

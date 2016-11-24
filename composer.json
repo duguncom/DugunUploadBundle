@@ -16,16 +16,13 @@
   "keywords": [
     "upload bundle"
   ],
-  "licensse": [
-    "MIT"
-  ],
   "require": {
-    "symfony/http-kernel": "~2.7",
+    "symfony/http-kernel": "~2.7|~3.1",
     "guzzlehttp/guzzle": "~6.1",
     "aws/aws-sdk-php-symfony": "~1.1"
   },
   "require-dev": {
-    "symfony/framework-bundle": "~2.7",
+    "symfony/framework-bundle": "~2.7|~3.1",
     "phpunit/phpunit": "~4.3",
     "intervention/image": "^2.3"
   },

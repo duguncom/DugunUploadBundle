@@ -13,5 +13,3 @@ dugun_upload:
             credentials:
                 key: user-key
                 secret: user-secret
-        dugun_image_microservice: #this is our top secret image upload service!
-            url: https://this-is-our-secret/file-micro-service

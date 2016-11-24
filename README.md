@@ -6,7 +6,7 @@ Installation
 
 You can add duguncom/uploadbundle to your requirements with dev-master
 
-    "duguncom/uploadbundle": "~1.1",
+    "duguncom/uploadbundle": "~2.0",
     
 or you can directly run:
 
@@ -58,9 +58,7 @@ dugun_upload:
             credentials:
                 key: %dugun_upload.credentials.aws.credentials.key%
                 secret: %dugun_upload.credentials.aws.credentials.secret%
-        dugun_image_microservice: #this is our top secret image upload service!
-            base_url: %dugun_upload.credentials.dugun_image_microservice.base_url%
-            url: %dugun_upload.credentials.dugun_image_microservice.url%
+
 ```
 4: Usage
 -------------------------
