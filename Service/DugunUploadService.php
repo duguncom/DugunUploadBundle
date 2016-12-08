@@ -4,7 +4,6 @@ namespace Dugun\UploadBundle\Service;
 
 use Dugun\UploadBundle\Contracts\DugunUploadInterface;
 use Dugun\UploadBundle\Service\Upload\AWSUploadService;
-use Dugun\UploadBundle\Service\Upload\DugunImageMicroserviceUploadService;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 class DugunUploadService
@@ -19,23 +18,16 @@ class DugunUploadService
      */
     private $uploaderService;
 
-    public function __construct($parameters)
+    /**
+     * DugunUploadService constructor.
+     *
+     * @param $parameters
+     * @param DugunUploadInterface|AWSUploadService $uploaderService
+     */
+    public function __construct($parameters, DugunUploadInterface $uploaderService)
     {
         $this->parameters = $parameters;
-        $this->setUploaderService($this->parameters['upload_service_name']);
-    }
-
-    public function setUploaderService($serviceName)
-    {
-        if ($serviceName == 'aws') {
-            $this->uploaderService = new AWSUploadService(
-                $this->parameters['credentials'][$serviceName]
-            );
-        } elseif ($serviceName == 'dugun_image_microservice') {
-            $this->uploaderService = new DugunImageMicroserviceUploadService(
-                $this->parameters['credentials'][$serviceName]
-            );
-        }
+        $this->uploaderService = $uploaderService;
     }
 
     public function download($filePath)
@@ -53,6 +45,7 @@ class DugunUploadService
         if (!$this->uploaderService) {
             return false; //throw
         }
+        $filePath = null;
         if ($file instanceof UploadedFile) {
             $filePath = $file->getRealPath();
         } elseif ($file instanceof \Intervention\Image\Image) {
@@ -60,9 +53,9 @@ class DugunUploadService
         } elseif (is_string($file)) {
             $filePath = $file;
         }
-        if (isset($filePath)) {
+        if (null !== $filePath) {
             $result = $this->uploaderService->upload($filePath, $destinationFile, $overwrite);
-            if ($result['success'] == true) {
+            if ($result['success'] === true) {
                 if ($delete) {
                     unlink($filePath);
                 }

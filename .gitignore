@@ -2,3 +2,4 @@
 vendor
 composer.lock
 phpDocumentor.phar
+.php_cs.cache

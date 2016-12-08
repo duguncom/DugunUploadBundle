@@ -1,7 +1,12 @@
 services:
-#    dugun_upload.example:
-#        class: Dugun\UploadBundle\Example
-#        arguments: [@service_id, "plain_value", %parameter%]
+    dugun_upload.client.s3_client:
+      class: Aws\S3\S3Client
+      arguments: ['%dugun_upload.config.credentials.aws%'] #Check DugunUploadExtension for parameter definition.
+
+    dugun_upload.service.upload.aws_upload_service:
+        class: Dugun\UploadBundle\Service\Upload\AWSUploadService
+        arguments: ['%dugun_upload.config.credentials.aws%', '@dugun_upload.client.s3_client']
+
     dugun_upload.service.upload_service:
         class: Dugun\UploadBundle\Service\DugunUploadService
-        arguments: ['%dugun_upload.config%']
+        arguments: ['%dugun_upload.config%', '@dugun_upload.service.upload.aws_upload_service']

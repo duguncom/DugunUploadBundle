@@ -23,6 +23,7 @@ class DugunUploadExtension extends Extension
         $config = $this->processConfiguration($configuration, $configs);
 
         $container->setParameter('dugun_upload.config', $config);
+        $container->setParameter('dugun_upload.config.credentials.aws', $config['credentials']['aws']);
 
         $loader = new Loader\YamlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
         $loader->load('services.yml');

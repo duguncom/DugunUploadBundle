@@ -10,10 +10,10 @@ class AWSUploadService implements DugunUploadInterface
     protected $uploadService;
     protected $parameters;
 
-    public function __construct($parameters)
+    public function __construct($parameters, S3Client $s3Client)
     {
         $this->parameters = $parameters;
-        $this->uploadService = new S3Client($parameters);
+        $this->uploadService = $s3Client;
     }
 
     public function upload($filePath, $destinationFile, $overwrite = false)
@@ -30,7 +30,7 @@ class AWSUploadService implements DugunUploadInterface
             'Bucket' => $bucket,
             'Key' => $destinationFile,
             'SourceFile' => $filePath,
-            'ACL' => 'public-read'
+            'ACL' => 'public-read',
         ];
         //TODO: check content type is allowed?
         if ($contetType) {
