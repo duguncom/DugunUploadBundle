@@ -6,11 +6,11 @@ dugun_upload:
     temporary_path: /tmp
     credentials:
         aws:
-            bucket: bucket-name
-            base_url: http://path_to_s3_base.com/
+            bucket: i.anneysen.com
+            base_url: 'https://i.anneysen.com/'
             version: latest
-            region: region-name
-            scheme: http
+            region: eu-central-1
+            scheme: https
             credentials:
-                key: user-key
-                secret: user-secret
+                key: AKIAISGXGO2YT2R2JCJQ
+                secret: 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
