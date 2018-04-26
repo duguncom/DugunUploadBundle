@@ -10,3 +10,4 @@ services:
     dugun_upload.service.upload_service:
         class: Dugun\UploadBundle\Service\DugunUploadService
         arguments: ['%dugun_upload.config%', '@dugun_upload.service.upload.aws_upload_service']
+        public: true
